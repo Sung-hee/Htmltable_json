@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src=""https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js""></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="table-responsive">
+        <h1>JSON data to HTML Table Example</h1>
+        <br>
+        <table class="table" id="stock_table">
+          <thead>
+            <tr>
+              <th scope="col">종목명</th>
+              <th scope="col">황금알점수</th>
+              <th scope="col">파워등급</th>
+              <th scope="col">수급등급</th>
+              <th scope="col">실적등급</th>
+              <th scope="col">현재가치</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </body>
+<html>
+
+<script>
+  $(document).ready(function(){
+    $.getJSON('https://charttest-sungheeek.c9users.io/stock_table.json', function(data){
+      var json_data = '';
+      $.each(data, function(key, value){
+        json_data += '<tbody>';
+        json_data += '<tr>';
+        json_data += '<td>'+value.companycode+'</td>'
+        json_data += '<td>'+value.goldagg+'</td>'
+        json_data += '<td>'+value.powerrating+'</td>'
+        json_data += '<td>'+value.demandrating+'</td>'
+        json_data += '<td>'+value.performancegrade+'</td>'
+        json_data += '<td>'+value.currentvalue+'</td>'
+        json_data += '</tr>';
+        json_data += '</tbody>';
+      });
+      $('#stock_table').append(json_data);
+    });
+  });
+</script>
