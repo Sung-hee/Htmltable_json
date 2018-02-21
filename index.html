@@ -1,49 +1,89 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src=""https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js""></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </head>
   <body>
     <div class="container">
       <div class="table-responsive">
-        <h1>JSON data to HTML Table Example</h1>
-        <br>
         <table class="table" id="stock_table">
-          <thead>
-            <tr>
-              <th scope="col">종목명</th>
-              <th scope="col">황금알점수</th>
-              <th scope="col">파워등급</th>
-              <th scope="col">수급등급</th>
-              <th scope="col">실적등급</th>
-              <th scope="col">현재가치</th>
-            </tr>
-          </thead>
+          <tr>
+            <th scope="col">종목명</th>
+            <th scope="col">황금알점수</th>
+            <th scope="col">파워등급</th>
+            <th scope="col">수급등급</th>
+            <th scope="col">실적등급</th>
+            <th scope="col">현재가치</th>
+          </tr>
         </table>
       </div>
     </div>
   </body>
-<html>
+</html>
 
 <script>
   $(document).ready(function(){
     $.getJSON('https://charttest-sungheeek.c9users.io/stock_table.json', function(data){
       var json_data = '';
+
       $.each(data, function(key, value){
-        json_data += '<tbody>';
         json_data += '<tr>';
-        json_data += '<td>'+value.companycode+'</td>'
-        json_data += '<td>'+value.goldagg+'</td>'
-        json_data += '<td>'+value.powerrating+'</td>'
-        json_data += '<td>'+value.demandrating+'</td>'
-        json_data += '<td>'+value.performancegrade+'</td>'
-        json_data += '<td>'+value.currentvalue+'</td>'
+        json_data += '<td>'+value.companycode+'</td>';
+        if(value.goldagg == "매우우수" || value.goldagg == "우수"){
+          json_data += '<td style="color:red">'+value.goldagg+'</td>';
+        }
+        else if(value.goldagg == "평범"){
+          json_data += '<td>'+value.goldagg+'</td>';
+        }
+        else {
+          json_data += '<td style="color:blue">'+value.goldagg+'</td>';
+        }
+
+        if(value.powerrating == "매우우수" || value.powerrating == "우수"){
+          json_data += '<td style="color:red">'+value.powerrating+'</td>';
+        }
+        else if(value.powerrating == "평범"){
+          json_data += '<td>'+value.powerrating+'</td>';
+        }
+        else {
+          json_data += '<td style="color:blue">'+value.powerrating+'</td>';
+        }
+
+        if(value.demandrating == "매우우수" || value.demandrating == "우수"){
+          json_data += '<td style="color:red">'+value.demandrating+'</td>';
+        }
+        else if(value.demandrating == "평범"){
+          json_data += '<td>'+value.demandrating+'</td>';
+        }
+        else {
+          json_data += '<td style="color:blue">'+value.demandrating+'</td>';
+        }
+
+        if(value.performancegrade == "매우우수" || value.performancegrade == "우수"){
+          json_data += '<td style="color:red">'+value.performancegrade+'</td>';
+        }
+        else if(value.performancegrade == "평범"){
+          json_data += '<td>'+value.performancegrade+'</td>';
+        }
+        else {
+          json_data += '<td style="color:blue">'+value.performancegrade+'</td>';
+        }
+
+        if(value.currentvalue == "매우우수" || value.currentvalue == "우수"){
+          json_data += '<td style="color:red">'+value.performancegrade+'</td>';
+        }
+        else if(value.currentvalue == "평범"){
+          json_data += '<td>'+value.currentvalue+'</td>';
+        }
+        else {
+          json_data += '<td style="color:blue">'+value.currentvalue+'</td>';
+        }
         json_data += '</tr>';
-        json_data += '</tbody>';
       });
       $('#stock_table').append(json_data);
     });
