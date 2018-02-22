@@ -1027,7 +1027,7 @@
                 e = a.fnDisplayEnd(),
                 f = a.fnRecordsTotal(),
                 g = a.fnRecordsDisplay();
-                // j = g ? c.sInfo : c.sInfoEmpty;
+                j = g ? c.sInfo : c.sInfoEmpty;
             g !== f && (j += " " + c.sInfoFiltered);
             j += c.sInfoPostFix;
             j = Cb(a, j);
@@ -3266,7 +3266,7 @@
                 sSortAscending: ": activate to sort column ascending",
                 sSortDescending: ": activate to sort column descending"
             },
-            // sEmptyTable: "No data available in table",
+            sEmptyTable: "No data available in table",
             sInfo: "Showing _START_ to _END_ of _TOTAL_ entries",
             sInfoEmpty: "Showing 0 to 0 of 0 entries",
             sInfoFiltered: "(filtered from _MAX_ total entries)",
