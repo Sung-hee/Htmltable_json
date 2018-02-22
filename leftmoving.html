@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style type="text/css">
+      marquee span {
+      margin-right: 0%;
+      }
+      marquee p {
+      white-space:nowrap;
+      margin-right: 1000px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="table-responsive" id="stock_news">
+        <!-- <marquee scrollamount=5><span style="color:red; font-weight:bold">속도 5~ </span><span style="color:red; font-weight:bold">속도 10~ </span></marquee> -->
+      </div>
+    </div>
+  </body>
+
+<script>
+  $(document).ready(function(){
+    $.getJSON('https://charttest-sungheeek.c9users.io/stock_news.json', function(data){
+      var json_data = '';
+
+      $.each(data, function(key, value){
+        console.log(value.topic);
+        if(value.color == "red"){
+          if(value.bold == true){
+              json_data += '<marquee scrollamount=10><span style="color:red; font-weight:bold">'+value.topic+'</span>'
+          }
+          else {
+            json_data += '<marquee scrollamount=10><span style="color:red;>'+value.topic+'</span>'
+          }
+        }
+        else if(value.color == "blue"){
+          if(value.bold == true){
+              json_data += '<span style="color:blue; font-weight:bold">'+value.topic+'</span>'
+          }
+          else {
+            json_data += '<span style="color:blue">'+value.topic+'</span>'
+          }
+        }
+        if(value.color == "black"){
+          if(value.bold == true){
+              json_data += '<span style="font-weight:bold">'+value.topic+'</span>'
+          }
+          else {
+            json_data += '<span>'+value.topic+'</span></marquee>'
+          }
+        }
+      });
+      $('#stock_news').append(json_data);
+    });
+  });
+</script>

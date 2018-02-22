@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="https://docs.handsontable.com/0.15.1/scripts/jquery.min.js"></script>
+<script src="https://docs.handsontable.com/0.15.1/bower_components/handsontable/dist/handsontable.full.js"></script>
+<link type="text/css" rel="stylesheet" href="https://docs.handsontable.com/0.15.1/bower_components/handsontable/dist/handsontable.full.min.css">
+
+<div id="example1" class="hot handsontable"></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  var
+    myData = Handsontable.helper.createSpreadsheetData(50, 50),
+    container = document.getElementById('example1'),
+    positions = document.getElementById('positions'),
+    hot;
+
+  hot = new Handsontable(container, {
+    data: myData,
+    colWidths: [47, 47, 47, 47, 47, 47, 47, 47, 47, 47],
+    rowHeaders: true,
+    colHeaders: true,
+    fixedRowsTop: 0,
+    fixedColumnsLeft: 0
+  });
+
+  setInterval(function () {
+    var str = '';
+
+    str += 'RowOffset: ' + hot.rowOffset();
+
+    positions.innerHTML = str;
+  }, 100);
+
+  function bindDumpButton() {
+      if (typeof Handsontable === "undefined") {
+        return;
+      }
+
+      Handsontable.Dom.addEvent(document.body, 'click', function (e) {
+
+        var element = e.target || e.srcElement;
+
+        if (element.nodeName == "BUTTON" && element.name == 'dump') {
+          var name = element.getAttribute('data-dump');
+          var instance = element.getAttribute('data-instance');
+          var hot = window[instance];
+          console.log('data of ' + name, hot.getData());
+        }
+      });
+    }
+  bindDumpButton();
+
+});
+</script>
