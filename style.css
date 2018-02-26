@@ -7,3 +7,6 @@
     div.container {
         width: 80%;
     }
+    table.dataTable {
+      border-collapse: collapse;
+    }
