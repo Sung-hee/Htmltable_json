@@ -14,13 +14,19 @@ function getParams(paramUrl){
 var gold = getParams('gold');
 var power = getParams('power');
 var supply = getParams('supply');
-var perfomance = getParams('perfomance');
+var perfomance = getParams('performance');
 var value = getParams('value');
-var url = 'http://61.72.187.6/phps/stock_table?gold=1&power=2&supply=3&performance=4&value=5';
+var url = 'http://61.72.187.6/phps/stock_table';
 var height = $(window).height()*0.888;
 
+console.log(gold);
+console.log(power);
+console.log(supply);
+console.log(perfomance);
+console.log(value);
+
 $(document).ready(function(){
-  $.getJSON(url + "?gold=" + gold + "&power=" + power + "&supply=" + supply + "&perfomance=" + perfomance + "&value=" + value, function(data){
+  $.getJSON(url + "?gold=" + gold + "&power=" + power + "&supply=" + supply + "&performance=" + perfomance + "&value=" + value, function(data){
     var json_data = '';
     console.log(gold);
     console.log(power);
@@ -29,53 +35,53 @@ $(document).ready(function(){
       json_data += '<tr>';
       json_data += '<td>'+value.companycode+'</td>';
       if(value.goldagg == "1 등급" || value.goldagg == "2 등급"){
-        json_data += '<td style="color:red">'+value.goldagg+'</td>';
+        json_data += '<td style="color:red">'+'&nbsp&nbsp&nbsp'+value.goldagg+'</td>';
       }
       else if(value.goldagg == "3 등급"){
-        json_data += '<td>'+value.goldagg+'</td>';
+        json_data += '<td>'+'&nbsp&nbsp&nbsp'+value.goldagg+'</td>';
       }
       else {
-        json_data += '<td style="color:blue">'+value.goldagg+'</td>';
+        json_data += '<td style="color:blue">'+'&nbsp&nbsp&nbsp'+value.goldagg+'</td>';
       }
 
       if(value.powerrating == "1 등급" || value.powerrating == "2 등급"){
-        json_data += '<td style="color:red">'+value.powerrating+'</td>';
+        json_data += '<td style="color:red">'+'&nbsp&nbsp&nbsp'+value.powerrating+'</td>';
       }
       else if(value.powerrating == "3등급"){
-        json_data += '<td>'+value.powerrating+'</td>';
+        json_data += '<td>'+'&nbsp&nbsp&nbsp'+value.powerrating+'</td>';
       }
       else {
-        json_data += '<td style="color:blue">'+value.powerrating+'</td>';
+        json_data += '<td style="color:blue">'+'&nbsp&nbsp&nbsp'+value.powerrating+'</td>';
       }
 
       if(value.demandrating == "1 등급" || value.demandrating == "2 등급"){
-        json_data += '<td style="color:red">'+value.demandrating+'</td>';
+        json_data += '<td style="color:red">'+'&nbsp&nbsp&nbsp'+value.demandrating+'</td>';
       }
       else if(value.demandrating == "3 등급"){
-        json_data += '<td>'+value.demandrating+'</td>';
+        json_data += '<td>'+'&nbsp&nbsp&nbsp'+value.demandrating+'</td>';
       }
       else {
-        json_data += '<td style="color:blue">'+value.demandrating+'</td>';
+        json_data += '<td style="color:blue">'+'&nbsp&nbsp&nbsp'+value.demandrating+'</td>';
       }
 
       if(value.performancegrade == "1 등급" || value.performancegrade == "2 등급"){
-        json_data += '<td style="color:red">'+value.performancegrade+'</td>';
+        json_data += '<td style="color:red">'+'&nbsp&nbsp&nbsp'+value.performancegrade+'</td>';
       }
       else if(value.performancegrade == "3 등급"){
-        json_data += '<td>'+value.performancegrade+'</td>';
+        json_data += '<td>'+'&nbsp&nbsp&nbsp'+value.performancegrade+'</td>';
       }
       else {
-        json_data += '<td style="color:blue">'+value.performancegrade+'</td>';
+        json_data += '<td style="color:blue">'+'&nbsp&nbsp&nbsp'+value.performancegrade+'</td>';
       }
 
       if(value.currentvalue == "1 등급" || value.currentvalue == "2 등급"){
-        json_data += '<td style="color:red">'+value.performancegrade+'</td>';
+        json_data += '<td style="color:red">'+'&nbsp&nbsp&nbsp'+value.performancegrade+'</td>';
       }
       else if(value.currentvalue == "3 등급"){
-        json_data += '<td>'+value.currentvalue+'</td>';
+        json_data += '<td>'+'&nbsp&nbsp&nbsp'+value.currentvalue+'</td>';
       }
       else {
-        json_data += '<td style="color:blue">'+value.currentvalue+'</td>';
+        json_data += '<td style="color:blue">'+'&nbsp&nbsp&nbsp&nbsp'+value.currentvalue+'</td>';
       }
       json_data += '</tr>';
     });
